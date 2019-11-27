@@ -1,94 +1,373 @@
-*{
+/*
+dark green: #006400;
+header: #2c632c;
+Media querries that I need to change: 984 x 301 one of my main screen
+1326 x 301
+
+BIG DESKTOP
+1920 x 1080
+
+DESKTOP
+1600 x 900
+1440 x 900
+1366 x 768
+1280 x 1024
+1280 x 800
+
+TABLET LANDSCAPE
+1024 x 768
+
+TABLET PORTRAIT
+768 x 1024
+720 x 1280
+
+PHONE ONLY
+480 x 800
+375 x 667
+360 x 640
+320 x 568
+*/
+
+/*MEDIA QUERRY MANAGER
+
+0-600px:      Phone
+600-900px:    Tablet portrait
+900-1200px:   Tablet landscape
+
+[1200-1800]:   Normal styles would apply
+
+1800px +:     Big Desktop
+
+Breakpoints arguments:
+-phone
+-tab-port
+-tab-land
+-big-desktop
+
+1em = 16px
+//600px/16 = 37.5em
+//900px/16 56.25em
+//1200px  75em
+//1800px  112.5em 
+*/         
+
+*, 
+*::after,
+*::before{
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: inherit; /*inheritance*/
 }
+
+
+
+html{
+  font-size:62.5%; /*1 rem is equals to 10px divide by 16 to get percentage */
+  
+}
+/*
+
+*/
+
+
+@media (max-width: 75em) { 
+ html {
+  font-size: 56.25%; /*1 rem =9px  //width < 900*/
+ }
+}
+
+@media (max-width: 56.25em) {
+  html {
+   font-size: 50%; /*1 rem = 8px, 8/16 = 50%  //width < 600*/
+  }
+}
+
+@media (max-width: 37.5em) { 
+  html {
+   font-size: 30%; /*phone*/
+  }
+}
+
+@media (min-width: 112.5em) {
+ html {
+   font-size:75%; /*1 rem = 12px, 12/16 */
+ }
+}
+
+
 
 body {
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
-  font-size: 16px;
+  /*font-size: 16px;*/
   line-height: 1.7;
+  box-sizing: border-box;
   
 }
+
+
 
 .header {
-  background: #006400 ;
-  height: 75vh;
- // clip-path: polygon(100% 84%, 89% 79%, 75% 77%, 63% 78%, 46% 83%, 23% 91%, 11% 93%, 0 91%, 0 0, 100% 0);
+  background: #2c632c ;
+  height: 70vh;
   position: relative;
- // z-index: -1; 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
 }
 
+@media (max-width: 75em) { 
+  .header {
+    height: 95vh;
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+   
+  }
+ }
 
-.img-fcc{
-  position: absolute;
-  top:180px;
-  left: 700px;
+#item{
+  padding: 0;
+  margin: 3rem; /*30px*/
+  background-color: #2c632c;
+}
+
+#item2{
+  height: 40rem; /*400px*/
+}
+.header__img-box{
+  position: relative;
+  top:14rem; /*150px*/
+  /*left: 700px;*/
   
 }
 
-.fcc{
-  height: 350px;
-  width:  550px;
-  border-radius: 10px;
-
+@media (max-width: 75em) { 
+  .header__img-box {
+    top:12rem;
+   
+  }
+ }
+/*
+.img-fcc:hover{
+    transform: translateY(-3px);
+   
 }
 
-.heading-container{
-  position: absolute;
-  width:400px;
-  top: 40%;
-  left: 15%;
-  background-color:#006400;
+.img-fcc:active{
+  transform: translateY(-1px);
+ 
+}*/
+
+
+
+.header__img{
+  width: 57rem; /*570px*/
+  height: 33rem; /*330px*/
+ /* width:  550px;*/
+  border-radius: .8rem; /*8px*/
 }
+
+@media (max-width: 75em) { 
+  .header__img{
+    height: 30rem;
+  }
+ }
+/*.fcc:hover{
+  transform: translateY(-3px);
+}
+
+.fcc:active{
+transform: translateY(-1px);
+}*/
+
+.header__heading-container{
+  position: relative;
+  width:40rem; /*400px*/
+  top: 37%;
+  /*left: 15%;*/
+  background-color: #2c632c;
+}
+
+@media (max-width: 75em) { 
+  .header__heading-container{
+    top: 20%;
+  }
+ }
 
 .heading-primary{
  color: #fff;   
- //block elements occupy the entire width
+ backface-visibility: hidden;
 }
 
-.heading-primary-main{
+.heading-primary--main{
   display: block;
-  font-size: 40px;
+  font-size: 3rem; /*40px*/
   font-weight: 700;
-  
+  animation-name: moveInLeft;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
 }
-.heading-primary-sub{
+.heading-primary--sub{
   display: block;
-  font-size: 15px;
+  font-size: 1.4rem; /*14px*/
+  letter-spacing: .2rem;/*2px*/
   font-weight:370;
-  margin-bottom: 30px;
+  margin-bottom: 3.0rem; /*30px*/
+  animation: moveInRight 1s ease-out;
+}
+
+@keyframes moveInLeft{
+  0%{
+    opacity:0;
+    transform: translateX(-10rem); /*-100px*/
+  }
+
+  80%{
+    transform: translateX(1rem); /*10px*/
+
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInRight{
+  0%{
+    opacity:0;
+    transform: translateX(10rem); /*100px*/
+  }
+
+  80%{
+    transform: translateX(-1rem); /*-10px*/
+
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInBottom{
+  0%{
+    opacity:0;
+    transform: translateY(4rem); /*40px*/
+  }
+
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+.header__icon{
+  margin-top:5rem; /*50px*/
+  color: white;
+  font-size: 1.1rem; /*11px*/ 
+  letter-spacing: 0.1rem; /*1px*/
 }
 
 a{
- font-size: 11px;
+ font-size: 1.1rem; /*11px*/
+ letter-spacing: .1rem; /*1px*/
+ 
 }
-
+/*button initial state*/
 .btn:link,
 .btn:visited{
   text-decoration: none;
-  padding: 8px 12px;
-  border-radius: 5px;
+  padding: .8rem 1.2rem; /*8px 12px*/
+  border-radius: .5rem; /*5px*/
   display: inline-block;
- 
+  font-weight: 900;
+  transition: all .2s;
+  position: relative;
+}
+/*hover state*/
+.btn:hover{
+  transform: translateY(-0.3rem); /*-3px*/
+  box-shadow: 0 1rem 2rem rgba(0,0,0,.2);/*10px 20px 20% opacity to have a subtle shadow and not too visible*/
+
+}
+/*active state*/
+.btn:active{
+  transform: translateY(-1px);
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.2);/*5px 10px*/
 }
 
-.btn-white{
+.btn--white{
   background-color: white;
   color:green;
 }
 
-
-#wave{
-  position:absolute;
-  top:370px;
-  bottom: 0;
+.btn::after{
+  content: "";
+  display: inline-block;
+  height: 100%;
   width: 100%;
+  border-radius: .5rem; /*5px*/
+  position: absolute;
+  top:0;
+  left:0;
+  z-index: -1;
+  transition: all .4s;
 }
 
-#defs2{
- bottom:0;
- width: 100%;
- position:absolute;
+.btn--white::after{
+  background-color: white;
 }
+
+.btn:hover::after{
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+  
+}
+
+.btn--animated{
+  animation: moveInBottom 1s ease-out .75s;
+  animation-fill-mode: backwards;
+}
+
+/*SVG section wave part*/
+.wave{
+  height: 15rem; /*150px*/ 
+  overflow: hidden; 
+}
+
+
+@media (max-width: 75em) { 
+  .wave {
+   height: 0; /*1 rem =9px  //width < 900*/
+   
+  }
+ }
+ 
+ @media (max-width: 56.25em) {
+   html {
+    font-size: 50%; /*1 rem = 8px, 8/16 = 50%  //width < 600*/
+   }
+ }
+ 
+ @media (max-width: 37.5em) { 
+   html {
+    font-size: 30%; /*phone*/
+   }
+ }
+
+/*
+ <svg viewBox="0 0 500 150" preserveAspectRatio="none" 
+  style="height: 100%; width: 100%;">
+  <path d="M-92.27,4.45 C105.25,360.69 314.05,-186.02 540.34,
+  70.81 L500.00,0.00 L0.00,0.00 Z" 
+  style="stroke: none; fill: #2c632c; ">
+  </path>
+  </svg>
+
+
+*/
+
+
+
